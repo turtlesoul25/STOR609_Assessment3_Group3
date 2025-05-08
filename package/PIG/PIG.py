@@ -109,7 +109,7 @@ def generate_PIG_states(target):
 
     return S
 
-def bellman_PIG_func_generator(target, die_size):
+def pig_value_func(target, die_size):
     def bellman_PIG(s, A, P, R, V, target=target, die_size=die_size):
         values = dict((a, 0) for a in A)
         i, j, k = s

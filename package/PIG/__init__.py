@@ -9,7 +9,7 @@ of the GNU General Public License as published by the Free Software Foundation,
 either version 3 of the license, or (at your option) any other later version.
 '''
 
-from .value_iteration import value_iteration
+from .PIG import value_iteration, generate_PIG_states, generate_PIGLET_states, piglet_value_func, pig_value_func
 
 __version__ = "1.0.0"
 __author__ = "Niharika Reddy Peddinenikalva"
