@@ -68,7 +68,7 @@ def generate_PIGLET_states(target):
                 
     # Add terminal states
     S.add(("Win", "Lose", 0)) 
-    S.add(("Lose", "Win", 0)) 
+    # S.add(("Lose", "Win", 0)) 
 
     return S
 
@@ -105,7 +105,7 @@ def generate_PIG_states(target):
 
     # Add terminal states
     S.add(("Win", "Lose", 0))
-    S.add(("Lose", "Win", 0)) 
+    # S.add(("Lose", "Win", 0)) 
 
     return S
 
