@@ -68,7 +68,7 @@ def generate_PIGLET_states(target):
                 
     # Add terminal states
     S.add(("Win", "Lose", 0)) 
-    # S.add(("Lose", "Win", 0)) 
+    S.add(("Lose", "Win", 0)) 
 
     return S
 
@@ -80,6 +80,8 @@ def piglet_value_func(target):
 
         if i == "Win": # If at terminal win state, always hold
             values["hold"] = 1
+            return values
+        elif i == "Lose": # If at terminal lose state, always hold, prob of winning is 0
             return values
         
         for a in A: # calculate value for each action at s
@@ -105,7 +107,7 @@ def generate_PIG_states(target):
 
     # Add terminal states
     S.add(("Win", "Lose", 0))
-    # S.add(("Lose", "Win", 0)) 
+    S.add(("Lose", "Win", 0)) 
 
     return S
 
@@ -114,8 +116,10 @@ def pig_value_func(target, die_size):
         values = dict((a, 0) for a in A)
         i, j, k = s
 
-        if i == "Win":
-            values["hold"] = 1
+        if i == "Win": # If at terminal win state, always hold
+            return values
+        
+        elif i == "Lose": # If at terminal lose state, always hold, prob of winning is 0
             return values
         
         for a in A:
