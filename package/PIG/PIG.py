@@ -81,6 +81,7 @@ def piglet_value_func(target):
         if i == "Win": # If at terminal win state, always hold
             values["hold"] = 1
             return values
+        
         elif i == "Lose": # If at terminal lose state, always hold, prob of winning is 0
             return values
         
@@ -117,6 +118,7 @@ def pig_value_func(target, die_size):
         i, j, k = s
 
         if i == "Win": # If at terminal win state, always hold
+            values["hold"] = 1
             return values
         
         elif i == "Lose": # If at terminal lose state, always hold, prob of winning is 0
