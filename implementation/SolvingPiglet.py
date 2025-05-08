@@ -18,9 +18,9 @@ piglet_optimal_prob_winning = results["value_function"]
 for s in S:
     print(f"P(winning at {s}) if {piglet_optimal_policy[s]}: {piglet_optimal_prob_winning[s]:.4f}")
 
-# Uncomment only if new results needed
-with open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb') as f:
-    pickle.dump(results, f)
+# # Uncomment only if new results needed
+# with open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb') as f:
+#     pickle.dump(results, f)
 
 piglet_prob_winning = dict((s, []) for s in S)
 for its in range(25):
