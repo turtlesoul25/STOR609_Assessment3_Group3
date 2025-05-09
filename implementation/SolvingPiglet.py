@@ -13,14 +13,20 @@ V_init[("Win", "Lose", 0)] = 1
 results = value_iteration(S=S, A=A, P=None, R=None, 
                           gamma=1, max_iterations=100, 
                           V_init=V_init, bellman_eq=bellman_piglet)
-piglet_optimal_policy = results["optimal_policy"]
-piglet_optimal_prob_winning = results["value_function"]
+
+pickle.dump(results, open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb'))
+results_loaded = pickle.load(open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'rb'))
+
+piglet_optimal_policy = results_loaded["optimal_policy"]
+piglet_optimal_prob_winning = results_loaded["value_function"]
 for s in S:
     print(f"P(winning at {s}) if {piglet_optimal_policy[s]}: {piglet_optimal_prob_winning[s]:.4f}")
 
 # # Uncomment only if new results needed
 # with open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb') as f:
 #     pickle.dump(results, f)
+
+
 
 piglet_prob_winning = dict((s, []) for s in S)
 for its in range(25):
