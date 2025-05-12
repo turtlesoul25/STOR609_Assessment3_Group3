@@ -3,26 +3,6 @@ from PIGCompetitionSetup import PIG_competition, optimal_PIG_strategy, hold_at_2
 import random
 import numpy as np
 
-def PIG_strat_always_roll(die_size: int, target: int, my_score: int, op_score, my_previous_score: int) -> bool:
-    '''
-    Implements a PIG strategy of always rolling. 
-    
-    Arguments
-    ----------
-    die_size: number of sides on the die
-    target: target score to win PIG
-    my_score: score for the current player in the current turn
-    op_score: saved score(s) for opponent(s)
-    my_previous_score: saved score so far for the current player
-
-    Returns
-    ----------
-    bool: True or False for the decision to "roll" or "stick" the
-        dice in the turn, respectively
-    '''
-    return True
-
-
 
 random.seed(123)
 target = 100

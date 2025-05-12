@@ -32,10 +32,10 @@ def value_iteration(S: Set, A: Set, P: Callable, R: Callable, gamma: float, max_
 
     # Dictionaries containing value function entries for each state
     Vk = dict([(s, 0) for s in S]) if V_init is None else V_init
-    V_next = dict([(s, 0) for s in S])
+    V_next = Vk.copy()
 
     # Dictionary to store optimal policy for each state
-    policy = dict([(s, 0) for s in S])
+    policy = dict([(s, 0) for s in list(V_init.keys())])
 
     k = 0 # iteration counter
 
