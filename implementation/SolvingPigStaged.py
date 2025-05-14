@@ -17,7 +17,8 @@ P_win = V_init.copy()
 
 # Dictionary to store optimal policy at each stage
 optimal_policy = dict([(s, 0) for s in S])
-optimal_policy[("Win", "Lose", 0)], optimal_policy[("Lose", "Win", 0)] = "hold"
+optimal_policy[("Win", "Lose", 0)], optimal_policy[("Lose", "Win", 0)] = "hold", "hold"
+
 
 # For each score_sum 0 <= i+j <= 198
 for score_sum in range(2*(target-1), -1, -1):

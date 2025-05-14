@@ -8,7 +8,7 @@ target = 100
 die_size = 6
 
 # Optimal player vs optimal player
-n_rounds = 10000
+n_rounds = 1000
 winners_opt1 = np.zeros(n_rounds)
 for i in range(n_rounds):
     print(f"Round: {i+1}")

@@ -1,5 +1,8 @@
 # Import packages
 from typing import Set, Callable, Dict
+import numpy as np
+import plotly.graph_objects as go
+
 
 
 # Define the value iteration algorithm as a function
@@ -134,3 +137,80 @@ def pig_value_func(target, die_size):
 
         return values
     return bellman_PIG
+
+
+def generate_surface_plot(target: int, set_of_states: Set, figtitle: str = None):
+    # Define the grid bounds to be 0 to target for all three axes
+    grid_x = target
+    grid_y = target
+    grid_z = target
+
+    # Create a 3D array (grid) of zeros
+    value = np.zeros((grid_x, grid_y, grid_z))
+
+    # For all states that should be plotted, give a value of 1
+    for (i, j, k) in set_of_states:
+        value[i, j, k] = 1
+
+    # Grid indices
+    x, y, z = np.indices(value.shape)
+
+    # Plot the 3D isosurface at states with value 1
+    fig= go.Figure(data=go.Isosurface(
+        x=x.flatten(),
+        y=y.flatten(),
+        z=z.flatten(),
+        value=value.flatten(),
+        isomin=0.5,   # nothing less than 1 to be plotted
+        isomax=1,
+        surface_count=1, # Plot only one surface for simplicity
+        colorscale=[(0, 'darkgrey'), (1, 'grey')],  # custom grayscale to match paper's colours
+        showscale=False, # remove colorbar
+
+    ))
+
+    # Add axis labels and other formatting such as default aspect
+    fig.update_layout(
+        scene=dict(
+        xaxis=dict(
+            title='Player 1 Score (i)',
+            backgroundcolor="white",
+            gridcolor='lightgrey',
+            zeroline=False,
+            showline=True,
+            linecolor='black',  # Black border
+            ticks='outside',    # Show ticks outside the axis
+            tickcolor='black'
+        ),
+        yaxis=dict(
+            title='Player 2 Score (j)',
+            backgroundcolor="white",
+            gridcolor='lightgrey',
+            zeroline=False,
+            showline=True,
+            linecolor='black',  # Black border
+            ticks='outside',
+            tickcolor='black'
+        ),
+        zaxis=dict(
+            title='Turn Total (k)',
+            backgroundcolor="white",
+            gridcolor='lightgrey',
+            zeroline=False,
+            showline=True,
+            linecolor='black',  # Black border
+            ticks='outside',
+            tickcolor='black'
+        ),
+            aspectmode='cube',  # Ensures the plot is not distorted
+            camera=dict(
+                eye=dict(x=1.5, y=1.5, z=1.5)  # Zoom out to view full 3D plot
+            )
+        ),
+        margin=dict(l=0, r=0, b=0, t=50),  # Set margins
+        height=550,      # Plot height
+        # width=1000,    # Plot width
+        title=figtitle,  # Figure title (if any)
+        )  
+
+    return fig 
