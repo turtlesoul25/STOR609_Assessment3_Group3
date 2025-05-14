@@ -55,9 +55,7 @@ def find_winner(target: int, scores: NDArray[np.int_]) -> int:
     int: player number (numbered from 1 to n for n players)
     '''
 
-    n = len(scores) # number of players
-    player_nums = [i+1 for i in range(n)] # labels for each player
-    return player_nums[np.nonzero(scores>=target)[0][0]] # player number (indexed from 1 to n)
+    return np.nonzero(scores>=target)[0][0] # player number (indexed from 1 to n)
 
 
     
@@ -79,7 +77,7 @@ def choose_player(nplayers: int, previous_player:int = None) -> int:
     if previous_player != None: # known previous player
         return (previous_player + 1) % nplayers
     else: # choose first player
-        return math.floor(random.uniform(0, nplayers-1))
+        return random.randint(0, nplayers-1)
     
 
 
@@ -111,9 +109,9 @@ def PIG_competition(target: int, die_size: int,
     if p1 == None:
         turn = choose_player(nplayers)
     else:
-        turn = (p1 - 1) % nplayers
+        turn = (p1) % nplayers
 
-    while not check_winner(target, scores):
+    while not np.any(scores >= target):
         # Start the score for the current player's turn
         # print("Turn:", turn+1, scores)
         turn_score = 0
@@ -121,6 +119,8 @@ def PIG_competition(target: int, die_size: int,
 
         # Check if the player wants to stick or roll
         if not strat(die_size, target, turn_score, np.delete(scores, turn), scores[turn]):
+            scores[turn] += turn_score
+            turn = choose_player(nplayers, turn)
             continue 
         
         rolled_num = die_size
@@ -131,30 +131,33 @@ def PIG_competition(target: int, die_size: int,
                 break
 
             # If player wants to roll
-            rolled_num = roll_die(die_size)
+            rolled_num = random.randint(1, die_size)
 
             if rolled_num == 1: # End turn of player
                 break
 
             else: # Update turn score and see if this lets the player win
                 turn_score += rolled_num
-                forecast_scores = scores 
+                forecast_scores = scores.copy() 
                 forecast_scores[turn] = scores[turn] + turn_score # potential score if player stops playing here
-                if check_winner(target, forecast_scores):   # If player wins with this roll, update scores and end the loop
+                if np.any(forecast_scores >= target):   # If player wins with this roll, update scores and end the loop
                     scores = forecast_scores
                     break
 
         turn = choose_player(nplayers, turn) # Choose the next player in the list of players
     
     winner = find_winner(target, scores) # Find winner and the score of the winner
-    return winner, scores[winner - 1]
+    return winner, scores[winner]
+
+target = 100
+die_size = 6
+optimal_results = pickle.load(open(f'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
 
 
 def optimal_PIG_strategy(die_size: int, target: int, turn_score: int, op_score: NDArray[np.int_], player_score: int) -> bool:
     i, j, k = int(player_score), int(max(op_score)), int(turn_score)
     if i + k >= target:
         i, j, k = "Win", "Lose", 0
-    optimal_results = pickle.load(open(f'implementation\Results\PIG_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
     optimal_policy = optimal_results["optimal_policy"]
     
     return optimal_policy[(i, j, k)] == "roll"

@@ -40,8 +40,8 @@ results = {"optimal_policy": optimal_policy,
            "value_function": P_win}
 
 # Store PIG results
-# Uncomment if new results need to be stored
-pickle.dump(results, open(f'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'wb'))
+# # Uncomment if new results need to be stored
+# pickle.dump(results, open(f'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'wb'))
 
 
 # Load PIG results

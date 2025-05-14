@@ -27,7 +27,7 @@ for s in S:
 #     pickle.dump(results, f)
 
 
-
+# Produce convergence plot for PIGLET
 piglet_prob_winning = dict((s, []) for s in S)
 for its in range(25):
     value_function = value_iteration(S=S, A=A, P=None, R=None, 
@@ -47,4 +47,4 @@ plt.xlabel("Iteration")
 plt.ylabel("Win Probability")
 plt.title("Value iteration with Piglet (goal points = 2)")
 plt.grid()
-plt.show()
+plt.savefig("implementation\Results\Figures\PIGLET_convergence.png", dpi=300)
