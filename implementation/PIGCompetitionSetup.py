@@ -177,7 +177,7 @@ def hold_strat_func(n):
 def derive_CI(comp_results, n_rounds, alpha):
     mean_win_percent = sum(comp_results == 0)/n_rounds  # estimate of p
     std_err = np.std(comp_results)/np.sqrt(n_rounds)    # standard error
-    quant = norm.ppf((1-alpha)/2)                       # normal quantile
+    quant = norm.ppf(1-alpha/2)                       # normal quantile
     lower_ci = mean_win_percent - (std_err*quant)
     upper_ci = mean_win_percent + (std_err*quant)
     return [lower_ci, upper_ci]
