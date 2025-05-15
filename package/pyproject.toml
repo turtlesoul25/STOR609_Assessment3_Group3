@@ -6,16 +6,16 @@ build-backend = "setuptools.build_meta"
 name = "PIG"
 version = "1.0.0"
 maintainers = [
-  { name="Niharika Reddy Peddinenikalva", email="n.peddinenikalva@lancaster.ac.uk" },
   { name="Vlad Bercovici", email="v.bercovici@lancaster.ac.uk" },
   { name="Malcolm Connolly", email="m.connolly4@lancaster.ac.uk" },
   { name="Rebekah Fearnhead", email="r.fearnhead1@lancaster.ac.uk" },
+  { name="Niharika Reddy Peddinenikalva", email="n.peddinenikalva@lancaster.ac.uk" },
 ]
 authors = [
-  { name="Niharika Reddy Peddinenikalva", email="n.peddinenikalva@lancaster.ac.uk"},
   { name="Vlad Bercovici", email="v.bercovici@lancaster.ac.uk" },
   { name="Malcolm Connolly", email="m.connolly4@lancaster.ac.uk" },
   { name="Rebekah Fearnhead", email="r.fearnhead1@lancaster.ac.uk" },
+  { name="Niharika Reddy Peddinenikalva", email="n.peddinenikalva@lancaster.ac.uk"},
 ]
 description = "Value iteration to find the optimal policy for dice game PIG and PIGLET"
 readme = "README.md"
