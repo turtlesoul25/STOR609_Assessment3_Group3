@@ -60,7 +60,7 @@ perform_competition=False
 if perform_competition:
     random.seed(seed)
     winners_results_r20 = tournament(n_rounds, target, die_size, optimal_PIG_strategy, hold_at_20_strategy, first_player=None)
-    np.save(f'implementation\Results\opt_r_h20_{n_rounds}_seed{seed}.npy', winners_results_h20) 
+    np.save(f'implementation\Results\opt_r_h20_{n_rounds}_seed{seed}.npy', winners_results_r20) 
 
 
 winners_results_r20 = np.load(f"implementation\Results\opt_r_h20_{n_rounds}_seed{seed}.npy")
@@ -131,7 +131,7 @@ perform_competition=False
 if perform_competition:
     random.seed(seed)
     winners_results_r21 = tournament(n_rounds, target, die_size, optimal_PIG_strategy, hold_at_21_strategy, first_player=None)
-    np.save(f'implementation\Results\opt_r_h21_{n_rounds}_seed{seed}.npy', winners_results_h21) 
+    np.save(f'implementation\Results\opt_r_h21_{n_rounds}_seed{seed}.npy', winners_results_r21) 
 
 
 winners_results_r21 = np.load(f"implementation\Results\opt_r_h21_{n_rounds}_seed{seed}.npy")
@@ -204,7 +204,7 @@ perform_competition=False
 if perform_competition:
     random.seed(seed)
     winners_results_r22 = tournament(n_rounds, target, die_size, optimal_PIG_strategy, hold_at_22_strategy, first_player=None)
-    np.save(f'implementation\Results\opt_r_h22_{n_rounds}_seed{seed}.npy', winners_results_h22) 
+    np.save(f'implementation\Results\opt_r_h22_{n_rounds}_seed{seed}.npy', winners_results_r22) 
 
 
 winners_results_r22 = np.load(f"implementation\Results\opt_r_h22_{n_rounds}_seed{seed}.npy")
@@ -277,7 +277,7 @@ perform_competition=False
 if perform_competition:
     random.seed(seed)
     winners_results_r23 = tournament(n_rounds, target, die_size, optimal_PIG_strategy, hold_at_23_strategy, first_player=None)
-    np.save(f'implementation\Results\opt_r_h23_{n_rounds}_seed{seed}.npy', winners_results_h23) 
+    np.save(f'implementation\Results\opt_r_h23_{n_rounds}_seed{seed}.npy', winners_results_r23) 
 
 
 winners_results_r23 = np.load(f"implementation\Results\opt_r_h23_{n_rounds}_seed{seed}.npy")
