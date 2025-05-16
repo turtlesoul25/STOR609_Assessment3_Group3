@@ -75,6 +75,7 @@ def choose_player(nplayers: int, previous_player:int = None) -> int:
     ----------
     int: player number (numbered from 0 to nplayers-1)
     '''
+
     if previous_player != None: # known previous player
         return (previous_player + 1) % nplayers
     else: # choose first player
@@ -154,8 +155,11 @@ target = 100
 die_size = 6
 optimal_results = pickle.load(open(f'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
 
-
 def optimal_PIG_strategy(die_size: int, target: int, turn_score: int, op_score: NDArray[np.int_], player_score: int) -> bool:
+    '''
+    For a given state of the Pig game, return whether optimal policy rolls as a Boolean
+    '''
+
     i, j, k = int(player_score), int(max(op_score)), int(turn_score)
     if i + k >= target:
         i, j, k = "Win", "Lose", 0
@@ -164,18 +168,35 @@ def optimal_PIG_strategy(die_size: int, target: int, turn_score: int, op_score: 
     return optimal_policy[(i, j, k)] == "roll"
 
 
-def hold_at_20_strategy(die_size: int, target: int, turn_score: int, op_score: NDArray[np.int_], player_score: int) -> bool:
-    return turn_score < 20
-
-
 def hold_strat_func(n):
+    '''
+    For a given state of the Pig game, return whether "hold at n" policy rolls as a Boolean
+    '''
+
     def hold_at_n_strategy(die_size: int, target: int, turn_score: int, op_score: NDArray[np.int_], player_score: int) -> bool:
         return turn_score < n
     return hold_at_n_strategy
 
 
-def derive_CI(comp_results, n_rounds, alpha):
-    mean_win_percent = sum(comp_results == 0)/n_rounds  # estimate of p
+def derive_CI(comp_results: NDArray[np.int_], n_rounds: int, alpha: float) -> List:
+    ''' 
+    Requires the results (which player won) of a complete simulation of the Pig game for a given number of rounds.
+    Computes confidence interval for probability that Player 1 won the game. up to a significance level of alpha.
+
+    Arguments
+    ----------
+    comp_results: numpy array of competition results (0 or 1, to indicate Player 1 or 2 won, respectively)
+    n_rounds: number of rounds (== length of comp_results)
+    alpha: desired significance level of CI (e.g. 0.05 for 95% CI)
+
+    Returns
+    ----------
+    [lower_ci, upper_ci]: confidence interval, where:
+    lower_ci: lower endpoint of CI
+    upper_ci: upper endpoint of CI
+    '''
+
+    mean_win_percent = sum(comp_results == 0)/n_rounds  # estimate of p (probability P1 won)
     std_err = np.std(comp_results)/np.sqrt(n_rounds)    # standard error
     quant = norm.ppf(1-alpha/2)                       # normal quantile
     lower_ci = mean_win_percent - (std_err*quant)
@@ -183,7 +204,25 @@ def derive_CI(comp_results, n_rounds, alpha):
     return [lower_ci, upper_ci]
 
 
-def tournament(n_rounds, target, die_size, p1strat, p2strat, first_player=0):
+def tournament(n_rounds, target, die_size, p1strat, p2strat, first_player=0) -> NDArray[np.int_]:
+    ''' 
+    Runs a tournament of Pig for a given number of rounds, target score, die size, and starting player.
+    Both players are assumed to be using the same policy in each round.
+
+    Arguments
+    ----------
+    n_rounds: number of rounds
+    target: target score of the game
+    die_size: number of sides on the die
+    p1strat: policy of Player 1 in the tournament
+    p2strat: policy of Player 2 in the tournament
+    first_player: starting player in each round (if no argument given, can be randomised)
+
+    Returns
+    ----------
+    comp_results: numpy array containing tournament results (0 if Player 1 won a round, 1 if Player 2 won a round)
+    '''
+    
     comp_results = np.zeros(n_rounds)
     for i in range(n_rounds):
         comp_results[i] = PIG_competition(target, die_size, 

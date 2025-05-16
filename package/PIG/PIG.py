@@ -61,6 +61,10 @@ def value_iteration(S: Set, A: Set, P: Callable, R: Callable, gamma: float, max_
 
 
 def generate_PIGLET_states(target):
+    '''
+    Function to generate states of Piglet for a given target score.
+    '''
+
     S = set()
     for i in range(target):  # player score
         for j in range(target):  # opponent score
@@ -77,6 +81,10 @@ def generate_PIGLET_states(target):
 
 
 def piglet_value_func(target):
+    '''
+    Value function of Piglet for a given target score after applying value iteration.
+    '''
+
     def bellman_piglet(s, A, P, R, V, target=target):
         values = dict((a, 0) for a in A) # value function at s for each action
         i, j, k = s
@@ -101,6 +109,10 @@ def piglet_value_func(target):
 
 
 def generate_PIG_states(target):
+    '''
+    Function to generate states of Pig for a given target score.
+    '''
+
     S = set()
     for i in range(target):  # player score
         for j in range(target):  # opponent score
@@ -116,6 +128,10 @@ def generate_PIG_states(target):
     return S
 
 def pig_value_func(target, die_size):
+    '''
+    Value function of Pig for a given target score after applying value iteration.
+    '''
+
     def bellman_PIG(s, A, P, R, V, target=target, die_size=die_size):
         values = dict((a, 0) for a in A)
         i, j, k = s
@@ -140,6 +156,20 @@ def pig_value_func(target, die_size):
 
 
 def generate_surface_plot(target: int, set_of_states: Set, figtitle: str = None):
+    '''
+    Function to generate plots of 3D surfaces containing a given set of states.
+
+    Arguments
+    -----------
+    target: target score of Pig game
+    set_of_states: set of states in/below the surface
+    figtitle: (Optional) figure title
+
+    Output
+    -----------
+    fig: Plotly object showing 3D surface.
+    '''
+
     # Define the grid bounds to be 0 to target for all three axes
     grid_x = target
     grid_y = target
