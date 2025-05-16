@@ -147,10 +147,9 @@ cross_sec_staged_PIG_fig = plot_reachable_states_cross_section(target, policy=PI
                                     reachable_states=PIG_staged_reachable_states)
 plt.savefig(f"implementation\Results\Figures\cross_sec_reachable_staged_PIG_target_{target}_d{die_size}.png", dpi=300)
 
-
 # ---------- Contour plots for win probabilities ------------
-def plot_win_prob_contours(target, prob_winning, target_probs = [0.03, 0.09, 0.27, 0.81]):
-    P = np.zeros((target, target, target))
+def plot_win_prob_contours(target, prob_winning, target_probs, tolerances, colour_list):
+    P = np.ones((target, target, target))
     
     for (i, j, k), value in prob_winning.items():
         if (i, j, k) not in [("Win","Lose",0), ("Lose", "Win", 0)]: # and cont - tolerance <= prob_winning[(i,j,k)] and cont + tolerance >= prob_winning[(i,j,k)]:
@@ -162,41 +161,44 @@ def plot_win_prob_contours(target, prob_winning, target_probs = [0.03, 0.09, 0.2
         np.arange(P.shape[2]),
         indexing='ij'
     )
+    
+    isosurfaces = []
 
-    tolerances = [0.002, 0.005, 0.01, 0.02]  # controls the sharpness
-    
-    # Start with an all-False mask
-    mask = np.full(P.shape, False)
-    
-    # Combine all target masks
-    for (t, tol) in list(zip(target_probs,tolerances)):
-        mask |= np.abs(P - t) < tol
-    
-    # Create volume render
-    fig = go.Figure(data=go.Volume(
-        x=x.flatten(),
-        y=y.flatten(),
-        z=z.flatten(),
-        value=mask.flatten(),
-        opacity=1,  # Low opacity
-        surface_count=1,
-        isomin=0.5,
-        isomax=1.0,
-    ))
-    
+    for i in range(len(target_probs)):
+        isosurfaces.append(go.Isosurface(
+            x=x.flatten(),
+            y=y.flatten(),
+            z=z.flatten(),
+            value=P.flatten(),
+            isomin=target_probs[i] - tolerances[i],
+            isomax=target_probs[i] + tolerances[i],
+            surface_count=1,
+            caps=dict(x_show=False, y_show=False, z_show=False),
+            showscale=False,
+            colorscale=[(0, colour_list[i]), (1, colour_list[i+1])],
+            name = f"{target_probs[i]*100}%"
+        ))
+
+    fig = go.Figure(data=isosurfaces)
+
     fig.update_layout(
         scene=dict(
             xaxis_title="Own Score",
             yaxis_title="Opponent Score",
             zaxis_title="Turn Total"
         ),
-        title="Win Probability Regions (Volume Mask)"
+        title="Win Probability Isosurfaces",
+        showlegend=True,
     )
 
     return fig
 
-contour_PIG_fig = plot_win_prob_contours(target, PIG_prob_winning)
+target_probs = [0.03, 0.09, 0.27, 0.81]
+tolerances = [0.001, 0.002, 0.003, 0.004]
+colour_list = ['white', 'lightgrey', 'grey', 'darkgrey', 'black']
+
+contour_PIG_fig = plot_win_prob_contours(target, PIG_prob_winning, target_probs, tolerances, colour_list)
 contour_PIG_fig.write_html(f"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.html")
 
-contour_staged_PIG_fig = plot_win_prob_contours(target, PIG_staged_prob_winning)
+contour_staged_PIG_fig = plot_win_prob_contours(target, PIG_staged_prob_winning, target_probs, tolerances, colour_list)
 contour_staged_PIG_fig.write_html(f"implementation\Results\Figures\contours_staged_PIG_target_{target}_d{die_size}.html")
