@@ -233,6 +233,8 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
             zaxis_title="Turn Total"
         ),
         title="Figure 7: Win Probability Contours",
+        margin=dict(l=0, r=0, b=0, t=50),  # Set margins
+        height=550,      # Plot height
         showlegend=True,
     )
 
