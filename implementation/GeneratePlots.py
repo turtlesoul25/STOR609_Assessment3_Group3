@@ -11,8 +11,8 @@ from typing import Set, Callable, Dict, List
 # Load results for value iteration and staged value iteration to plot surfaces
 target = 100
 die_size = 6
-results_PIG = pickle.load(open(f'implementation\Results\PIG_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
-results_staged_PIG = pickle.load(open(f'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
+results_PIG = pickle.load(open(fr'implementation\Results\PIG_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
+results_staged_PIG = pickle.load(open(fr'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
 
 # Probability of winning from each method
 PIG_prob_winning = results_PIG["value_function"]
@@ -39,13 +39,13 @@ for (i, j, k), action in PIG_staged_opt_pol.items():
 # ------------ Roll/hold boundary plots ---------------
 # Produce figures for roll/hold boundaries using both methods (Figure 3)
 PIG_roll_fig = generate_surface_plot(target, set_of_states=PIG_roll_states,
-                                     figtitle="3D plot of roll/hold boundary for optimal Pig play policy")
+                                     figtitle="Figure 3: 3D plot of roll/hold boundary for optimal Pig play policy")
 
 PIG_staged_roll_fig = generate_surface_plot(target, set_of_states=PIG_staged_roll_states,
-                                            figtitle="3D plot of roll/hold boundary for optimal Pig play policy")
+                                            figtitle="Figure 3: 3D plot of roll/hold boundary for optimal Pig play policy")
 # Save figures
-PIG_roll_fig.write_html(f"implementation\Results\Figures\Roll_boundary_PIG_target_{target}_d{die_size}.html")
-PIG_staged_roll_fig.write_html(f"implementation\Results\Figures\Roll_boundary_staged_PIG_target_{target}_d{die_size}.html")
+PIG_roll_fig.write_html(fr"implementation\Results\Figures\Roll_boundary_PIG_target_{target}_d{die_size}.html")
+PIG_staged_roll_fig.write_html(fr"implementation\Results\Figures\Roll_boundary_staged_PIG_target_{target}_d{die_size}.html")
 
 
 # ------------ Reachable states plots -----------------
@@ -96,13 +96,13 @@ PIG_staged_reachable_states = get_reachable_states(target, PIG_staged_opt_pol)
 
 # Produce figures for reachable states
 PIG_reachable_fig = generate_surface_plot(target, set_of_states=PIG_reachable_states,
-                                     figtitle="3D plot of reachable states by an optimal Pig player")
+                                     figtitle="Figure 5: 3D plot of reachable states by an optimal Pig player")
 
 PIG_staged_reachable_fig = generate_surface_plot(target, set_of_states=PIG_staged_reachable_states,
-                                            figtitle="3D plot of reachable states by an optimal Pig player")
+                                            figtitle="Figure 5: 3D plot of reachable states by an optimal Pig player")
 # Save figures
-PIG_reachable_fig.write_html(f"implementation\Results\Figures\Reachable_states_PIG_target_{target}_d{die_size}.html")
-PIG_staged_reachable_fig.write_html(f"implementation\Results\Figures\Reachable_states_staged_PIG_target_{target}_d{die_size}.html")
+PIG_reachable_fig.write_html(fr"implementation\Results\Figures\Reachable_states_PIG_target_{target}_d{die_size}.html")
+PIG_staged_reachable_fig.write_html(fr"implementation\Results\Figures\Reachable_states_staged_PIG_target_{target}_d{die_size}.html")
 
 
 
@@ -158,7 +158,7 @@ def plot_reachable_states_cross_section(target: int, policy: Dict, reachable_sta
     # Labels and limits
     ax.set_xlabel('Player 1 Score (i)')
     ax.set_ylabel('Turn Total (k)')
-    ax.set_title(f"Cross-section of the roll/hold boundary, opponent's score = {opponent_score}")
+    ax.set_title(fr"Figure 4: Cross-section of the roll/hold boundary, opponent's score = {opponent_score}")
     ax.set_xlim(0, 100)
     ax.set_ylim(0, 50)
     ax.legend()
@@ -170,11 +170,11 @@ def plot_reachable_states_cross_section(target: int, policy: Dict, reachable_sta
 # Cross-section plots for both methods where opponent score = 30
 cross_sec_PIG_fig = plot_reachable_states_cross_section(target, policy=PIG_opt_pol, 
                                     reachable_states=PIG_reachable_states)
-plt.savefig(f"implementation\Results\Figures\cross_sec_reachable_PIG_target_{target}_d{die_size}.png", dpi=300)
+plt.savefig(fr"implementation\Results\Figures\cross_sec_reachable_PIG_target_{target}_d{die_size}.png", dpi=300)
 
 cross_sec_staged_PIG_fig = plot_reachable_states_cross_section(target, policy=PIG_opt_pol, 
                                     reachable_states=PIG_staged_reachable_states)
-plt.savefig(f"implementation\Results\Figures\cross_sec_reachable_staged_PIG_target_{target}_d{die_size}.png", dpi=300)
+plt.savefig(fr"implementation\Results\Figures\cross_sec_reachable_staged_PIG_target_{target}_d{die_size}.png", dpi=300)
 
 # ---------- Contour plots for win probabilities ------------
 def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, tolerances: List, colour_list: List):
@@ -221,7 +221,7 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
             caps=dict(x_show=False, y_show=False, z_show=False),
             showscale=False,
             colorscale=[(0, colour_list[i]), (1, colour_list[i+1])],
-            name = f"{target_probs[i]*100}%"
+            name = fr"{target_probs[i]*100}%"
         ))
 
     fig = go.Figure(data=isosurfaces)
@@ -232,7 +232,7 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
             yaxis_title="Opponent Score",
             zaxis_title="Turn Total"
         ),
-        title="Win Probability Isosurfaces",
+        title="Figure 7: Win Probability Contours",
         showlegend=True,
     )
 
@@ -243,7 +243,7 @@ tolerances = [0.001, 0.002, 0.003, 0.004]
 colour_list = ['white', 'lightgrey', 'grey', 'darkgrey', 'black']
 
 contour_PIG_fig = plot_win_prob_contours(target, PIG_prob_winning, target_probs, tolerances, colour_list)
-contour_PIG_fig.write_html(f"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.html")
+contour_PIG_fig.write_html(fr"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.html")
 
 contour_staged_PIG_fig = plot_win_prob_contours(target, PIG_staged_prob_winning, target_probs, tolerances, colour_list)
-contour_staged_PIG_fig.write_html(f"implementation\Results\Figures\contours_staged_PIG_target_{target}_d{die_size}.html")
+contour_staged_PIG_fig.write_html(fr"implementation\Results\Figures\contours_staged_PIG_target_{target}_d{die_size}.html")

@@ -14,8 +14,8 @@ results = value_iteration(S=S, A=A, P=None, R=None,
                           gamma=1, max_iterations=100, 
                           V_init=V_init, bellman_eq=bellman_piglet)
 
-pickle.dump(results, open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb'))
-results_loaded = pickle.load(open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'rb'))
+pickle.dump(results, open(fr'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb'))
+results_loaded = pickle.load(open(fr'implementation\Results\PIGLET_results_target_{target}.pkl', 'rb'))
 
 piglet_optimal_policy = results_loaded["optimal_policy"]
 piglet_optimal_prob_winning = results_loaded["value_function"]
@@ -23,7 +23,7 @@ for s in S:
     print(f"P(winning at {s}) if {piglet_optimal_policy[s]}: {piglet_optimal_prob_winning[s]:.4f}")
 
 # # Uncomment only if new results needed
-# with open(f'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb') as f:
+# with open(fr'implementation\Results\PIGLET_results_target_{target}.pkl', 'wb') as f:
 #     pickle.dump(results, f)
 
 
@@ -47,4 +47,7 @@ plt.xlabel("Iteration")
 plt.ylabel("Win Probability")
 plt.title("Value iteration with Piglet (goal points = 2)")
 plt.grid()
-plt.savefig("implementation\Results\Figures\PIGLET_convergence.png", dpi=300)
+plt.savefig(fr"implementation\Results\Figures\PIGLET_convergence.png", dpi=300)
+
+
+
