@@ -3,6 +3,7 @@
 - [Installation](#installation)
 - [Example of use](#example-of-use)
 - [GitHub Repository](#github-repository)
+    - [Outline of Repository](#outline-of-repository)
 - [Author](#author)
 - [References](#references)
 
@@ -14,9 +15,7 @@ This package implements a value iteration algorithm to create an optimal policy 
 ## Installation
 
 #### Install from GitHub with pip
-    ``` python
     python -m pip install "git+https://github.com/turtlesoul25/STOR609_Assessment3_Group3#subdirectory=package"
-    ```
 
 ## Example of use
 
