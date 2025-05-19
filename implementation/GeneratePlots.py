@@ -1,17 +1,19 @@
 # Import packages
-from PIG import value_iteration, pig_value_func, piglet_value_func, generate_PIG_states, generate_PIGLET_states, generate_surface_plot
+from PIG import generate_surface_plot
 import numpy as np
 import pickle
 import plotly.graph_objects as go
 from queue import Queue
 import matplotlib.pyplot as plt
-from typing import Set, Callable, Dict, List
+from typing import Set, Dict, List
 
 # ---------- Load results -------------------
 # Load results for value iteration and staged value iteration to plot surfaces
 target = 100
 die_size = 6
+# Direct value iteration results for Pig
 results_PIG = pickle.load(open(fr'implementation\Results\PIG_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
+# Staged value iteration results for Pig
 results_staged_PIG = pickle.load(open(fr'implementation\Results\PIG_staged_results_target_{target}_diesize_{die_size}.pkl', 'rb'))
 
 # Probability of winning from each method
@@ -26,7 +28,7 @@ PIG_staged_opt_pol = results_staged_PIG["optimal_policy"]
 PIG_roll_states = set()
 PIG_staged_roll_states = set()
 
-# Add roll states
+# Add states where rolling is optimal for each method
 for (i, j, k), action in PIG_opt_pol.items():
     if action == "roll":
         PIG_roll_states.add((i, j, k))
@@ -36,7 +38,7 @@ for (i, j, k), action in PIG_staged_opt_pol.items():
         PIG_staged_roll_states.add((i, j, k))
 
 
-# ------------ Roll/hold boundary plots ---------------
+# ------------ Figure 3: Roll/hold boundary plots ---------------
 # Produce figures for roll/hold boundaries using both methods (Figure 3)
 PIG_roll_fig = generate_surface_plot(target, set_of_states=PIG_roll_states,
                                      figtitle="Figure 3: 3D plot of roll/hold boundary for optimal Pig play policy")
@@ -48,7 +50,7 @@ PIG_roll_fig.write_html(fr"implementation\Results\Figures\Roll_boundary_PIG_targ
 PIG_staged_roll_fig.write_html(fr"implementation\Results\Figures\Roll_boundary_staged_PIG_target_{target}_d{die_size}.html")
 
 
-# ------------ Reachable states plots -----------------
+# ------------ Figure 4, 5, 6: Reachable states plots -----------------
 # Find reachable states
 def get_reachable_states(target: int, policy: Dict) -> Set:
     '''
@@ -89,12 +91,12 @@ def get_reachable_states(target: int, policy: Dict) -> Set:
     return visited
  
 
-# Reachable states
+# Reachable states for each method
 PIG_reachable_states = get_reachable_states(target, PIG_opt_pol)
 PIG_staged_reachable_states = get_reachable_states(target, PIG_staged_opt_pol)
 
 
-# Produce figures for reachable states
+# Produce figures for reachable states for each method
 PIG_reachable_fig = generate_surface_plot(target, set_of_states=PIG_reachable_states,
                                      figtitle="Figure 5: 3D plot of reachable states by an optimal Pig player")
 
@@ -176,7 +178,8 @@ cross_sec_staged_PIG_fig = plot_reachable_states_cross_section(target, policy=PI
                                     reachable_states=PIG_staged_reachable_states)
 plt.savefig(fr"implementation\Results\Figures\cross_sec_reachable_staged_PIG_target_{target}_d{die_size}.png", dpi=300)
 
-# ---------- Contour plots for win probabilities ------------
+
+# ---------- Figure 7: Contour plots for win probabilities ------------
 def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, tolerances: List, colour_list: List):
     '''
     Function to generate win probability contours for a list of given target probabilities, tolerances and colour palettes (Figure 7).
@@ -187,7 +190,7 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
     prob_winning: Dictionary of win probabilities resulting from optimal play policy and value iteration
     target_probs: List of probabilities for which to plot the contour
     tolerances: List of tolerances, where for n-th target probability t_n, n-th tolerance tol_n implies the contour contains states with win probability [t_n - tol_n, t_n + tol_n]
-    colour_list: List of colour palettes, such that each consecutive pair is a colour scheme for each contour.
+    colour_list: List of colour palettes, such that each consecutive pair forms a colour scale for each contour.
 
     Output
     -----------
@@ -240,10 +243,11 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
 
     return fig
 
-target_probs = [0.03, 0.09, 0.27, 0.81]
+target_probs = [0.03, 0.09, 0.27, 0.81]    # win probabilities for contours
 tolerances = [0.001, 0.002, 0.003, 0.004]
-colour_list = ['white', 'lightgrey', 'grey', 'darkgrey', 'black']
+colour_list = ['white', 'lightgrey', 'grey', 'darkgrey', 'black']   # list of colour palettes
 
+# Contour plots for each method to be saved
 contour_PIG_fig = plot_win_prob_contours(target, PIG_prob_winning, target_probs, tolerances, colour_list)
 contour_PIG_fig.write_html(fr"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.html")
 

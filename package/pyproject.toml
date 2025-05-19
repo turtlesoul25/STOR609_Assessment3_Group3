@@ -17,7 +17,7 @@ authors = [
   { name="Rebekah Fearnhead", email="r.fearnhead1@lancaster.ac.uk" },
   { name="Niharika Reddy Peddinenikalva", email="n.peddinenikalva@lancaster.ac.uk"},
 ]
-description = "Value iteration to find the optimal policy for dice game PIG and PIGLET"
+description = "Implements a value iteration algorithm to find an optimal policy for playing the games Pig and Piglet."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

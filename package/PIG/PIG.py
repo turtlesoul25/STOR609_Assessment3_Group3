@@ -60,9 +60,9 @@ def value_iteration(S: Set, A: Set, P: Callable, R: Callable, gamma: float, max_
 
 
 
-def generate_PIGLET_states(target):
+def generate_PIGLET_states(target: int) -> Set:
     '''
-    Function to generate states of Piglet for a given target score.
+    Function to generate states (terminal and non-terminal) of Piglet for a given target score.
     '''
 
     S = set()
@@ -80,12 +80,29 @@ def generate_PIGLET_states(target):
     return S
 
 
-def piglet_value_func(target):
-    '''
-    Value function of Piglet for a given target score after applying value iteration.
-    '''
+def piglet_value_func(target: int) -> Callable:
+    '''Function to generate the value update function of Piglet for a given target score.'''
 
-    def bellman_piglet(s, A, P, R, V, target=target):
+    def bellman_piglet(s, A: Set, P: Callable, R: Callable, V: Dict, target: int = target) -> Dict:
+        '''
+        Computes the flip and hold values at state s for Piglet.
+        
+        Arguments
+        -----------
+        s: state at which we need to update the value.
+        A: set of possible actions at the state.
+        P: function which calculates the probability of transitioning from state s
+            to state s' under action a.
+        R: function which calculates the reward obtained when transitioning from 
+            state s to state s' under action a.
+        target: target score of Piglet game.
+        
+        Output
+        -----------
+        values: dictionary containing value at state s if action a is taken for 
+                all actions in set A.
+        '''
+
         values = dict((a, 0) for a in A) # value function at s for each action
         i, j, k = s
 
@@ -103,12 +120,12 @@ def piglet_value_func(target):
             elif a == "hold":
                 values[a] = 1 - V[(j, i+k, 0)]
                 
-        return values
+        return values # return value update for holding and flipping
     
-    return bellman_piglet
+    return bellman_piglet # return the update function for a given target score
 
 
-def generate_PIG_states(target):
+def generate_PIG_states(target: int) -> Set:
     '''
     Function to generate states of Pig for a given target score.
     '''
@@ -127,13 +144,31 @@ def generate_PIG_states(target):
 
     return S
 
-def pig_value_func(target, die_size):
-    '''
-    Value function of Pig for a given target score after applying value iteration.
-    '''
+def pig_value_func(target: int, die_size: int) -> Callable:
+    '''Function to generate the value update function of Piglet for a given target score.'''
 
-    def bellman_PIG(s, A, P, R, V, target=target, die_size=die_size):
-        values = dict((a, 0) for a in A)
+    def bellman_PIG(s, A: Set, P: Callable, R: Callable, V: Dict, target: int = target, die_size: int = die_size) -> Dict:
+        '''
+        Computes the roll and hold values at state s for Pig.
+        
+        Arguments
+        -----------
+        s: state at which we need to update the value.
+        A: set of possible actions at the state.
+        P: function which calculates the probability of transitioning from state s
+            to state s' under action a.
+        R: function which calculates the reward obtained when transitioning from 
+            state s to state s' under action a.
+        target: target score of Pig game.
+        die_size: number of sides in the die of Pig game.
+
+        Output
+        -----------
+        values: dictionary containing value at state s if action a is taken for 
+                all actions in set A.
+        '''
+
+        values = dict((a, 0) for a in A) # value function at s for each action
         i, j, k = s
 
         if i == "Win": # If at terminal win state, always hold
@@ -143,19 +178,20 @@ def pig_value_func(target, die_size):
         elif i == "Lose": # If at terminal lose state, always hold, prob of winning is 0
             return values
         
-        for a in A:
-            if a == "roll":
+        for a in A: # calculate value for each action at s
+            if a == "roll": 
                 V_good_roll = [V[(i, j, k+r)] if i + k + r < target 
-                               else V[("Win", "Lose", 0)] for r in range(2,7)]
+                               else V[("Win", "Lose", 0)] for r in range(2,7)]  # not rolling a 1
                 values[a] = (1 - V[(j, i, 0)] + sum(V_good_roll))/die_size
             elif a == "hold":
                 values[a] = 1 - V[(j, i+k, 0)]
 
-        return values
-    return bellman_PIG
+        return values # return value update for holding and rolling
+    
+    return bellman_PIG # return the update function for a given target score
 
 
-def generate_surface_plot(target: int, set_of_states: Set, figtitle: str = None):
+def generate_surface_plot(target: int, set_of_states: Set, figtitle: str = None) -> go.Figure:
     '''
     Function to generate plots of 3D surfaces containing a given set of states.
 
