@@ -2,6 +2,7 @@
 from PIGCompetitionSetup import *
 import random
 import numpy as np
+import matplotlib.pyplot as plt
 
 seed = 123
 target = 100
@@ -303,3 +304,67 @@ CI_95_r23 = derive_CI(winners_results_r23, n_rounds, alpha=0.05)
 print(f"Optimal player wins {win_percent_r23*100:.3f}% of the time.")
 print(f"95% Confidence Interval: ({CI_95_r23[0]*100:.3f}, {CI_95_r23[1]*100:.3f})")
 print(f"99% Confidence Interval: ({CI_99_r23[0]*100:.3f}, {CI_99_r23[1]*100:.3f}) \n")
+
+
+
+
+############### CI Plots ##########################
+
+# Function to generate the confidence interval plot
+def CI_plots(paper_win, mean_list, CI_95_list, CI_99_list, strategy_label="optimal", figtitle=None):
+    opp_strategy = ["Hold at 20", "Hold at 21", "Hold at 22", "Hold at 23"]
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(opp_strategy, [m*100 for m in mean_list], label=fr"$\%$ of {strategy_label} strategy wins")
+    ax.axhline(y=paper_win, linestyle="--", label=r"$\%$ claimed by Neller and Presser")
+    ax.fill_between(opp_strategy,
+                    [ci[0]*100 for ci in CI_95_list],
+                    [ci[1]*100 for ci in CI_95_list],
+                    color='blue', alpha=0.1, label='95% Confidence Interval')
+    ax.fill_between(opp_strategy,
+                    [ci[0]*100 for ci in CI_99_list],
+                    [ci[1]*100 for ci in CI_99_list],
+                    color='blue', alpha=0.1, label='99% Confidence Interval')
+    ax.set_ylabel(r"$\%$ wins")
+    ax.set_xlabel("Opponent strategy")
+    ax.set_title(figtitle)
+    leg = ax.legend()
+    leg.legend_handles[2].set_alpha(0.2)
+
+    return fig
+
+# Results for optimal player vs hold at n for n = 20, 21, 22, 23 stored in lists
+## Optimal player plays first
+opt_mean = [win_percent_opt, win_percent_opt21, win_percent_opt22, win_percent_opt23]
+opt_95_CI = [CI_95_opt, CI_95_opt21, CI_95_opt22, CI_95_opt23]
+opt_99_CI = [CI_99_opt, CI_99_opt21, CI_99_opt22, CI_99_opt23]
+
+## Optimal player plays second
+hn_mean = [win_percent_h20, win_percent_h21, win_percent_h22, win_percent_h23]
+hn_95_CI = [CI_95_h20, CI_95_h21, CI_95_h22, CI_95_h23]
+hn_99_CI = [CI_99_h20, CI_99_h21, CI_99_h22, CI_99_h23]
+
+## Random player plays first
+r_mean = [win_percent_r20, win_percent_r21, win_percent_r22, win_percent_r23]
+r_95_CI = [CI_95_r20, CI_95_r21, CI_95_r22, CI_95_r23]
+r_99_CI = [CI_99_r20, CI_99_r21, CI_99_r22, CI_99_r23]
+
+
+optimal_player_first_fig = CI_plots(58.74, mean_list=opt_mean, 
+                                    CI_95_list=opt_95_CI, CI_99_list=opt_99_CI, 
+                                    figtitle=r"$\%$ of optimal player wins when optimal player goes first")
+plt.savefig(fr'implementation\Results\Figures\CI_plot_optimal_p1.png', dpi=300)
+plt.close(optimal_player_first_fig)
+
+
+optimal_player_second_fig = CI_plots(47.76, mean_list=hn_mean, 
+                                     CI_95_list=hn_95_CI, CI_99_list=hn_99_CI, strategy_label=r"hold at $n$",
+                                     figtitle=r"$\%$ of hold at $n$ player wins when optimal player goes second")
+plt.savefig(fr'implementation\Results\Figures\CI_plot_optimal_p2.png', dpi=300)
+plt.close(optimal_player_second_fig)
+
+
+random_player_first_fig = CI_plots(55.49, mean_list=r_mean, 
+                                     CI_95_list=r_95_CI, CI_99_list=r_99_CI,
+                                     figtitle=r"$\%$ of optimal player wins when random player goes first")
+plt.savefig(fr'implementation\Results\Figures\CI_plot_random_p1.png', dpi=300)
+plt.close(random_player_first_fig)

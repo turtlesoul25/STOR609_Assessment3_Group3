@@ -173,11 +173,12 @@ def plot_reachable_states_cross_section(target: int, policy: Dict, reachable_sta
 cross_sec_PIG_fig = plot_reachable_states_cross_section(target, policy=PIG_opt_pol, 
                                     reachable_states=PIG_reachable_states)
 plt.savefig(fr"implementation\Results\Figures\cross_sec_reachable_PIG_target_{target}_d{die_size}.png", dpi=300)
+plt.close(cross_sec_PIG_fig)
 
 cross_sec_staged_PIG_fig = plot_reachable_states_cross_section(target, policy=PIG_opt_pol, 
                                     reachable_states=PIG_staged_reachable_states)
 plt.savefig(fr"implementation\Results\Figures\cross_sec_reachable_staged_PIG_target_{target}_d{die_size}.png", dpi=300)
-
+plt.close(cross_sec_staged_PIG_fig)
 
 # ---------- Figure 7: Contour plots for win probabilities ------------
 def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, tolerances: List, colour_list: List):
@@ -236,8 +237,8 @@ def plot_win_prob_contours(target: int, prob_winning: Dict, target_probs: List, 
             zaxis_title="Turn Total"
         ),
         title="Figure 7: Win Probability Contours",
-        margin=dict(l=0, r=0, b=0, t=50),  # Set margins
-        height=550,      # Plot height
+        margin=dict(l=0, r=0, b=0, t=50),   # Set margins
+        height=550,                         # Plot height
         showlegend=True,
     )
 
