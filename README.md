@@ -1,11 +1,10 @@
 # `PIG`
 - [**A Python package for optimal play of the game of Pig**](#)
 - [Installation](#installation)
-- [Example of use](#example-of-use)
 - [License](#license)
 - [GitHub Repository](#github-repository)
     - [Outline of Repository](#outline-of-repository)
-- [Author](#author)
+- [Authors](#authors)
 - [References](#references)
 
 
@@ -17,8 +16,6 @@ This package implements a value iteration algorithm to create an optimal policy 
 
 #### Install from GitHub with pip
     python -m pip install "git+https://github.com/turtlesoul25/STOR609_Assessment3_Group3#subdirectory=package"
-
-## Example of use
 
 
 ## License
@@ -59,6 +56,7 @@ The implementation folder contains:
         - Figure 4: .png files with file name beginning `cross_sec_reachable` 
         - Figure 5, 6: .html files beginning `Reachable_states`
         - Figure 7: .html files beginning `contours`
+        - CI plots (not in paper): .png files with file name beginning `CI_plot` - plots to compare $\%$ wins for player 1 when player 1 is optimal or otherwise for different opponent strategies
 
 
 ## Authors
