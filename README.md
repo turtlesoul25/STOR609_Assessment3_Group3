@@ -2,6 +2,7 @@
 - [**A Python package for optimal play of the game of Pig**](#)
 - [Installation](#installation)
 - [Example of use](#example-of-use)
+- [License](#license)
 - [GitHub Repository](#github-repository)
     - [Outline of Repository](#outline-of-repository)
 - [Author](#author)
@@ -18,6 +19,15 @@ This package implements a value iteration algorithm to create an optimal policy 
     python -m pip install "git+https://github.com/turtlesoul25/STOR609_Assessment3_Group3#subdirectory=package"
 
 ## Example of use
+
+
+## License
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
 
 
 ## GitHub Repository
@@ -59,6 +69,7 @@ Group 3: Vlad Bercovici, Malcolm Connolly, Rebekah Fearnhead, Niharika Peddineni
 - Malcolm Connolly: [email](mailto:m.connolly4@lancaster.ac.uk) (**Author**)
 - Rebekah Fearnhead: [email](mailto:r.fearnhead1@lancaster.ac.uk) (**Author**)
 - Niharika Peddinenikalva: [email](mailto:n.peddinenikalva@lancaster.ac.uk) (**Author**)
+
 
 ## References
 Neller, Todd W. and Clifton G.M. Presser. (2004) "Optimal Play of the Dice Game Pig," The UMAP Journal 25.1 , 25-47.
