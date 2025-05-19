@@ -95,7 +95,7 @@ def get_reachable_states(target: int, policy: Dict) -> Set:
 PIG_reachable_states = get_reachable_states(target, PIG_opt_pol)
 PIG_staged_reachable_states = get_reachable_states(target, PIG_staged_opt_pol)
 
-
+## ------ Reachable states (Figure 5)
 # Produce figures for reachable states for each method
 PIG_reachable_fig = generate_surface_plot(target, set_of_states=PIG_reachable_states,
                                      figtitle="Figure 5: 3D plot of reachable states by an optimal Pig player")
@@ -105,6 +105,23 @@ PIG_staged_reachable_fig = generate_surface_plot(target, set_of_states=PIG_stage
 # Save figures
 PIG_reachable_fig.write_html(fr"implementation\Results\Figures\Reachable_states_PIG_target_{target}_d{die_size}.html")
 PIG_staged_reachable_fig.write_html(fr"implementation\Results\Figures\Reachable_states_staged_PIG_target_{target}_d{die_size}.html")
+
+
+
+## ------ Reachable states where rolling is optimal (Figure 6)
+# Select from reachable states only those where rolling is optimal
+PIG_reachable_roll = {s for s in PIG_reachable_states if PIG_opt_pol[s] == "roll"}
+PIG_staged_reachable_roll = {s for s in PIG_staged_reachable_states if PIG_staged_opt_pol[s] == "roll"}
+
+# Produce figures for reachable states for each method
+PIG_reachable_roll_fig = generate_surface_plot(target, set_of_states=PIG_reachable_roll,
+                                     figtitle="Figure 6: 3D plot of reachable states where rolling is optimal")
+
+PIG_staged_reachable_roll_fig = generate_surface_plot(target, set_of_states=PIG_staged_reachable_roll,
+                                            figtitle="Figure 6: 3D plot of reachable states where rolling is optimal")
+# Save figures
+PIG_reachable_roll_fig.write_html(fr"implementation\Results\Figures\Reachable_states_opt_roll_PIG_target_{target}_d{die_size}.html")
+PIG_staged_reachable_roll_fig.write_html(fr"implementation\Results\Figures\Reachable_states_staged_opt_roll_PIG_target_{target}_d{die_size}.html")
 
 
 
