@@ -1,6 +1,6 @@
 ---
-title: "Habits"
-author: "John Doe"
+title: "Reproducibility of Optimal Play for Pig(let)"
+author: "Group 3: Vlad Bercovici, Malcolm Connolly, Rebekah Fearnhead, Niharika Peddinenikalva"
 format: revealjs
 incremental: true
 theme: sky
@@ -25,7 +25,7 @@ theme: sky
 
 # In the evening
 
-## Some code first
+## Some code example
 
 ```{python}
 #| echo: true
@@ -43,7 +43,39 @@ ax.grid(True)
 plt.show()
 ```
 
-## Code output (Figure 7)
+# Figures
+
+## Figure 2
+
+```{=html}
+<iframe src="Figures/PIGLET_convergence.png" width="100%" height="600px" style="border:none;"></iframe>
+```
+
+## Figure 3
+
+```{=html}
+<iframe src="Figures/Roll_boundary_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+
+## Figure 4
+
+```{=html}
+<iframe src="Figures/cross_sec_reachable_PIG_target_100_d6.png" width="100%" height="600px" style="border:none;"></iframe>
+```
+
+## Figure 5
+
+```{=html}
+<iframe src="Figures/Reachable_states_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+
+## Figure 6
+
+```{=html}
+<iframe src="Figures/Reachable_states_opt_roll_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+
+## Figure 7
 
 ```{=html}
 <iframe src="Figures/contours_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
