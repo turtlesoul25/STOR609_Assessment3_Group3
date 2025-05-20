@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 from queue import Queue
 import matplotlib.pyplot as plt
 from typing import Set, Dict, List
+import plotly.io as pio
 
 # ---------- Load results -------------------
 # Load results for value iteration and staged value iteration to plot surfaces
@@ -268,6 +269,8 @@ colour_list = ['white', 'lightgrey', 'grey', 'darkgrey', 'black']   # list of co
 # Contour plots for each method to be saved
 contour_PIG_fig = plot_win_prob_contours(target, PIG_prob_winning, target_probs, tolerances, colour_list)
 contour_PIG_fig.write_html(fr"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.html")
+pio.write_json(contour_PIG_fig, fr"implementation\Results\Figures\contours_PIG_target_{target}_d{die_size}.json")
 
 contour_staged_PIG_fig = plot_win_prob_contours(target, PIG_staged_prob_winning, target_probs, tolerances, colour_list)
 contour_staged_PIG_fig.write_html(fr"implementation\Results\Figures\contours_staged_PIG_target_{target}_d{die_size}.html")
+pio.write_json(contour_staged_PIG_fig, fr"implementation\Results\Figures\contours_staged_PIG_target_{target}_d{die_size}.json")
