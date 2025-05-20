@@ -1,0 +1,65 @@
+---
+title: "STOR-609 Replication and Reproduction Study Presentation Group 3"
+author: 
+    - Vlad Bercovici
+    - Malcolm Connolly 
+    - Rebekah Fearnhead
+    - Niharika Peddinenikalva
+format: revealjs
+incremental: true
+theme: sky
+---
+
+
+## Summary of our findings
+
+-   We believe we have managed to reproduce all figures from the original paper.
+-   We found that the figures of winning percentages were different from those in the paper.
+
+
+## Code output (Figure 7) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Figure 7 shows contours of different winning probabilities computed from the optimal policy.
+- We draw a contour wherein the states have a win probability that is within a threshold $t$ from the desired probability, e.g. in the interval $x\% \pm t$.
+- The thresholds selected were manually selected for each of the $4$ probabilities in order to yield smooth surfaces.
+:::
+
+::: {.column width="60%"}
+```{=html}
+<iframe src="Figures/contours_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+
+## 5 Rs of Neller and Cresser
+Replicability refers to when algorithm or solution can be recoded by someone else. 
+
+-  The methodology as described in the paper is not replicable, in particular the description of Value Iteration algorithm. 
+
+-  We were able to replicate their figures and recoded their implementation from their description. 
+
+- Java code authors supplied for piglet was re-runnable and repeatable.
+
+- No code means not all Rs applicable.
+
+
+## Our work and the 5Rs
+
+-   Our code is re-runnable by a third party, and we provide a package. 
+-   Our results are repeatable, as we obtain the same optimal policy after convergence, and we specify iterations.
+-   Our solution is reproducible, robust to different versions of python in future utilising sets, dictionaries and other base pythonic structures.
+-   Our results are replicable, we explain methodology in detail, and provide pseudocode.
+-   Our code is reusable for simple extensions of Pig such as goal-n-Pig, and routinely adaptable to different versions of Pig with equations (e.g. 2 6-sided dice losing with snake eyes, changes in input equation).
+-   Further Piglet could be extended to have different goal numbers (twiglet, triglet, quiglet?).
+-   Did not explore other extensions mentioned in paper such as jeopardy approach games.
+
+
+
+
+
+
