@@ -9,7 +9,7 @@ author:
     - Malcolm Connolly 
     - Rebekah Fearnhead
     - Niharika Peddinenikalva
-format: pptx
+format: revealjs
 transition: slide
 incremental: true
 theme: simple
