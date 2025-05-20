@@ -54,8 +54,9 @@ The implementation folder contains:
         - Figure 2: Piglet_convergence.png
         - Figure 3: .html files with file name beginning `Roll_boundary`
         - Figure 4: .png files with file name beginning `cross_sec_reachable` 
-        - Figure 5, 6: .html files beginning `Reachable_states`
-        - Figure 7: .html files beginning `contours`
+        - Figure 5: .html files beginning `Reachable_states`
+        - Figure 6: .html files beginning `Reachable_states_opt_roll`
+        - Figure 7: .html and .json files beginning `contours`
         - CI plots (not in paper): .png files with file name beginning `CI_plot` - plots to compare $\%$ wins for player 1 when player 1 is optimal or otherwise for different opponent strategies
 
 
