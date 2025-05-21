@@ -174,7 +174,7 @@ Niharika Peddinenikalva
 <div class="columns">
 <div class="column" style="width:40%;">
 <ul>
-<li class="fragment">Each of the lines represents how the estimates for each of the win probabilities changes as iterations of the algorithm are performed.</li>
+<li class="fragment">Each of the lines represents how the estimates for each of the win probabilities change as iterations of the algorithm are performed.</li>
 <li class="fragment">The win probability converges within the first <span class="math inline">\(25\)</span> iterations.</li>
 <li class="fragment">Our figure differs in the first <span class="math inline">\(5\)</span> iterations.</li>
 </ul>
@@ -188,7 +188,7 @@ Niharika Peddinenikalva
 <div class="column" style="width:37.5%;">
 <ul>
 <li class="fragment">In the graph the boundary surface is shown between the states where rolling again is the optimal policy (in grey) and those where the optimal policy is to hold (transparent)</li>
-<li class="fragment">We use the optimal policy obtained from value iteration to plot all states where rolling is the found to be the optimal policy.</li>
+<li class="fragment">We use the optimal policy obtained from value iteration to plot all states where rolling is found to be the optimal policy.</li>
 </ul>
 </div><div class="column" style="width:62.5%;">
 <iframe src="Figures/Roll_boundary_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
@@ -199,9 +199,9 @@ Niharika Peddinenikalva
 <div class="columns">
 <div class="column" style="width:40%;">
 <ul>
-<li class="fragment">Figure 4 is a cross-section of figure 3.</li>
+<li class="fragment">Figure 4 is a cross-section of Figure 3, as well as Figure 5 (see next slide).</li>
 <li class="fragment">Figure 4 is easier to compare to the graph created with our results, as it is only in two dimensions.</li>
-<li class="fragment">For lower values of player 1’s score they want to roll while they have a turn total of up to. This value decreases until a player score of around at which point they wish to roll until they have won.</li>
+<li class="fragment">For lower values of player 1’s score they want to roll while they have a turn total of up to 23. This value decreases until a player score of around 72, at which point they wish to roll until they have won.</li>
 </ul>
 </div><div class="column" style="width:60%;">
 <p><a href="./FIGURES/cross_sec_reachable_PIG_target_100_d6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="./FIGURES/cross_sec_reachable_PIG_target_100_d6.png"></a></p>
@@ -248,7 +248,7 @@ Niharika Peddinenikalva
 <ul>
 <li class="fragment">Figure 7 shows contours of different winning probabilities computed from the optimal policy.</li>
 <li class="fragment">We draw a contour wherein the states have a win probability that is within a threshold <span class="math inline">\(t\)</span> from the desired probability, e.g.&nbsp;in the interval <span class="math inline">\(x\% \pm t\)</span>.</li>
-<li class="fragment">The thresholds selected were manually selected for each of the <span class="math inline">\(4\)</span> probabilities in order to yield smooth surfaces.</li>
+<li class="fragment">The thresholds were manually selected for each of the <span class="math inline">\(4\)</span> probabilities in order to yield smooth surfaces.</li>
 </ul>
 </div><div class="column" style="width:60%;">
 <iframe src="Figures/contours_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
@@ -265,9 +265,9 @@ Niharika Peddinenikalva
 </section>
 <section id="rs-of-neller-and-cresser-i" class="slide level2">
 <h2>5 Rs of Neller and Cresser (I)</h2>
-<p>Replicability refers to when algorithm or solution can be recoded by someone else.</p>
+<p>Replicability refers to when an algorithm or solution can be recoded by someone else.</p>
 <ul>
-<li class="fragment"><p>The methodology as described in the paper is not replicable, in particular the description of Value Iteration algorithm.</p></li>
+<li class="fragment"><p>The methodology as described in the paper is not replicable, in particular the description of the Value Iteration (V.I.) algorithm.</p></li>
 <li class="fragment"><p>We were able to replicate their figures and recoded their implementation from their description.</p></li>
 <li class="fragment"><p>Java code authors supplied for Piglet was re-runnable and repeatable.</p></li>
 <li class="fragment"><p>No code means not all Rs applicable.</p></li>
@@ -277,16 +277,16 @@ Niharika Peddinenikalva
 <h2>5 Rs of Neller and Cresser (II)</h2>
 <ul>
 <li class="fragment"><p>V.I. algorithm in terms of tolerance <span class="math inline">\(\Delta\)</span>, though tolerance not specified in paper. We had to use maximum number of iterations instead.</p></li>
-<li class="fragment"><p>Though we reproduced the figures the 3D views not easily comparable. And there were no specific values to verify except <span class="math inline">\(P_{(0,0,0)}\)</span>.</p></li>
+<li class="fragment"><p>Though we reproduced the figures, the 3D views were not easily comparable. And there were no specific values to verify except <span class="math inline">\(P_{(0,0,0)}\)</span>.</p></li>
 <li class="fragment"><p>The authors claimed that staged V.I. is more efficient but we found the opposite.</p></li>
 </ul>
 </section>
 <section id="our-work-and-the-5rs-i" class="slide level2">
 <h2>Our work and the 5Rs (I)</h2>
 <ul>
-<li class="fragment">Our code is re-runnable by a third party, and we provide a package.</li>
+<li class="fragment">Our code is re-runnable by a third party, and we provide a Github package.</li>
 <li class="fragment">Our results are repeatable, as we obtain the same optimal policy after convergence, and we specify iterations.</li>
-<li class="fragment">Our solution is reproducible, robust to different versions of Python in future utilising sets, dictionaries and other base Pythonic structures.</li>
+<li class="fragment">Our solution is reproducible, robust to future versions of Python utilising sets, dictionaries and other basic data structures.</li>
 <li class="fragment">Our results are replicable, we explain methodology in detail, and provide pseudocode.</li>
 </ul>
 </section>

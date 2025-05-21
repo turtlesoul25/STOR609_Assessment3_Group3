@@ -28,7 +28,7 @@ format:
 
 :::: {.columns} 
 ::: {.column width="40%"} 
-- Each of the lines represents how the estimates for each of the win probabilities changes as iterations of the algorithm are performed.
+- Each of the lines represents how the estimates for each of the win probabilities change as iterations of the algorithm are performed.
 - The win probability converges within the first $25$ iterations.
 - Our figure differs in the first $5$ iterations.
 :::
@@ -47,7 +47,7 @@ format:
 :::: {.columns} 
 ::: {.column width="37.5%"} 
 - In the graph the boundary surface is shown between the states where rolling again is the optimal policy (in grey) and those where the optimal policy is to hold (transparent)
-- We use the optimal policy obtained from value iteration to plot all states where rolling is the found to be the optimal policy.
+- We use the optimal policy obtained from value iteration to plot all states where rolling is found to be the optimal policy.
 :::
 
 ::: {.column width="62.5%"}
@@ -63,9 +63,9 @@ format:
 
 :::: {.columns} 
 ::: {.column width="40%"} 
-- Figure 4 is a cross-section of figure 3.
+- Figure 4 is a cross-section of Figure 3, as well as Figure 5 (see next slide).
 - Figure 4 is easier to compare to the graph created with our results, as it is only in two dimensions.
-- For lower values of player 1's score they want to roll while they have a turn total of up to. This value decreases until a player score of around at which point they wish to roll until they have won.
+- For lower values of player 1's score they want to roll while they have a turn total of up to 23. This value decreases until a player score of around 72, at which point they wish to roll until they have won.
 :::
 
 ::: {.column width="60%"}
@@ -135,7 +135,7 @@ format:
 ::: {.column width="40%"} 
 - Figure 7 shows contours of different winning probabilities computed from the optimal policy.
 - We draw a contour wherein the states have a win probability that is within a threshold $t$ from the desired probability, e.g. in the interval $x\% \pm t$.
-- The thresholds selected were manually selected for each of the $4$ probabilities in order to yield smooth surfaces.
+- The thresholds were manually selected for each of the $4$ probabilities in order to yield smooth surfaces.
 :::
 
 ::: {.column width="60%"}
@@ -165,9 +165,9 @@ format:
 
 
 ## 5 Rs of Neller and Cresser (I)
-Replicability refers to when algorithm or solution can be recoded by someone else. 
+Replicability refers to when an algorithm or solution can be recoded by someone else. 
 
--  The methodology as described in the paper is not replicable, in particular the description of Value Iteration algorithm. 
+-  The methodology as described in the paper is not replicable, in particular the description of the Value Iteration (V.I.) algorithm. 
 
 -  We were able to replicate their figures and recoded their implementation from their description. 
 
@@ -179,7 +179,7 @@ Replicability refers to when algorithm or solution can be recoded by someone els
 
 - V.I. algorithm in terms of tolerance $\Delta$, though tolerance not specified in paper. We had to use maximum number of iterations instead.
 
-- Though we reproduced the figures the 3D views not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
+- Though we reproduced the figures, the 3D views were not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
 
 - The authors claimed that staged V.I. is more efficient but we found the opposite.
 
@@ -188,9 +188,9 @@ Replicability refers to when algorithm or solution can be recoded by someone els
 
 ## Our work and the 5Rs (I)
 
--   Our code is re-runnable by a third party, and we provide a package. 
+-   Our code is re-runnable by a third party, and we provide a Github package. 
 -   Our results are repeatable, as we obtain the same optimal policy after convergence, and we specify iterations.
--   Our solution is reproducible, robust to different versions of Python in future utilising sets, dictionaries and other base Pythonic structures.
+-   Our solution is reproducible, robust to future versions of Python utilising sets, dictionaries and other basic data structures.
 -   Our results are replicable, we explain methodology in detail, and provide pseudocode.
 
 
