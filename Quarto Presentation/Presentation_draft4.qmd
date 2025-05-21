@@ -1,7 +1,7 @@
 ---
 title: "STOR-609 Presentation"
 subtitle: |
-  Reproducing Pig(let)s
+  Reproducing Optimal Play of Pig(let)s
   
   Group 3
 author: 
@@ -9,10 +9,13 @@ author:
     - Malcolm Connolly 
     - Rebekah Fearnhead
     - Niharika Peddinenikalva
-format: revealjs
-transition: slide
-incremental: true
-theme: simple
+format: 
+  revealjs:
+    incremental: true
+    transition: slide
+    theme: simple
+    logo: Pig_watermark.svg
+    css: watermark.css
 ---
 
 
