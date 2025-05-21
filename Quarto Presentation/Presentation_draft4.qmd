@@ -1,0 +1,204 @@
+---
+title: "STOR-609 Presentation"
+subtitle: |
+  Reproducing Pig(let)s
+  
+  Group 3
+author: 
+    - Vlad Bercovici
+    - Malcolm Connolly 
+    - Rebekah Fearnhead
+    - Niharika Peddinenikalva
+format: revealjs
+transition: slide
+incremental: true
+theme: simple
+---
+
+
+## Summary of our findings
+
+-   We believe we have managed to reproduce all figures from the original paper.
+-   We found that the figures of winning percentages were different from those in the paper.
+
+## Optimal Piglet play (Figure 2) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Each of the lines represents how the estimates for each of the win probabilities changes as iterations of the algorithm are performed.
+- The win probability converges within the first $25$ iterations.
+- Our figure differs in the first $5$ iterations.
+:::
+
+::: {.column width="60%"}
+
+![](./FIGURES/PIGLET_convergence.png){.lightbox}
+
+:::
+
+::::
+
+
+## Optimal Pig play surface (Figure 3) {.smaller}
+
+:::: {.columns} 
+::: {.column width="37.5%"} 
+- In the graph the boundary surface is shown between the states where rolling again is the optimal policy (in grey) and those where the optimal policy is to hold (transparent)
+- We use the optimal policy obtained from value iteration to plot all states where rolling is the found to be the optimal policy.
+:::
+
+::: {.column width="62.5%"}
+```{=html}
+<iframe src="Figures/Roll_boundary_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+## Roll/Hold Boundary plot (Figure 4) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Figure 4 is a cross-section of figure 3.
+- Figure 4 is easier to compare to the graph created with our results, as it is only in two dimensions.
+- For lower values of player 1's score they want to roll while they have a turn total of up to. This value decreases until a player score of around at which point they wish to roll until they have won.
+:::
+
+::: {.column width="60%"}
+
+![](./FIGURES/cross_sec_reachable_PIG_target_100_d6.png){.lightbox}
+:::
+
+::::
+
+## Reachable states (Figure 5) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Figure 5 shows all the states that can be reached with a player following the optimal policy.
+- There are $4$ gaps in the reachable states, as in the paper.
+- An optimal player with score of $0$ will never hold before reaching a turn total less than $21$ which can be seen in the graph.
+:::
+
+::: {.column width="60%"}
+```{=html}
+<iframe src="Figures/Reachable_states_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+## Reachable states with optimal rolling (Figure 6) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Figure 6 is similar to Figure 3 but instead of showing the optimal policy for all states, it just shows the optimal policy for the states that are reachable as found in Figure 5.
+- This is created by looking at the reachable states found for Figure 5, showing only those states at which the optimal policy is to roll.
+
+:::
+
+::: {.column width="60%"}
+```{=html}
+<iframe src="Figures/Reachable_states_opt_roll_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+## Comparing figures 5 and 6 {.smaller}
+
+:::: {.columns} 
+::: {.column width="49%"} 
+```{=html}
+<iframe src="Figures/Reachable_states_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::: {.column width="49%"}
+```{=html}
+<iframe src="Figures/Reachable_states_opt_roll_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+## Winning probability contours (Figure 7) {.smaller}
+
+:::: {.columns} 
+::: {.column width="40%"} 
+- Figure 7 shows contours of different winning probabilities computed from the optimal policy.
+- We draw a contour wherein the states have a win probability that is within a threshold $t$ from the desired probability, e.g. in the interval $x\% \pm t$.
+- The thresholds selected were manually selected for each of the $4$ probabilities in order to yield smooth surfaces.
+:::
+
+::: {.column width="60%"}
+```{=html}
+<iframe src="Figures/contours_PIG_target_100_d6.html" width="100%" height="600px" style="border:none;"></iframe>
+```
+:::
+
+::::
+
+
+## Our simulated winning percentages differ {.smaller}
+
+:::: {.columns} 
+::: {.column width="49%"} 
+![](./FIGURES/CI_plot_optimal_p1.png){.lightbox}
+:::
+
+::: {.column width="49%"}
+
+![](./FIGURES/CI_plot_optimal_p2.png){.lightbox}
+:::
+
+::::
+
+
+
+
+## 5 Rs of Neller and Cresser (I)
+Replicability refers to when algorithm or solution can be recoded by someone else. 
+
+-  The methodology as described in the paper is not replicable, in particular the description of Value Iteration algorithm. 
+
+-  We were able to replicate their figures and recoded their implementation from their description. 
+
+- Java code authors supplied for Piglet was re-runnable and repeatable.
+
+- No code means not all Rs applicable.
+
+## 5 Rs of Neller and Cresser (II)
+
+- V.I. algorithm in terms of tolerance $\Delta$, though tolerance not specified in paper. We had to use maximum number of iterations instead.
+
+- Though we reproduced the figures the 3D views not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
+
+
+
+
+## Our work and the 5Rs (I)
+
+-   Our code is re-runnable by a third party, and we provide a package. 
+-   Our results are repeatable, as we obtain the same optimal policy after convergence, and we specify iterations.
+-   Our solution is reproducible, robust to different versions of Python in future utilising sets, dictionaries and other base Pythonic structures.
+-   Our results are replicable, we explain methodology in detail, and provide pseudocode.
+
+
+## Our work and the 5Rs (II)
+
+-   Our code is reusable for simple extensions of Pig such as goal-n-Pig, and routinely adaptable to different versions of Pig with equations (e.g. two 6-sided dice losing with snake eyes, changes in input equation).
+-   Further Piglet could be extended to have different goal numbers (twiglet, triglet, quiglet?).
+-   Did not explore other extensions mentioned in paper such as jeopardy approach games.
+
+## Conclusion
+
+-   We believe we have managed to reproduce all plots from the original paper.
+
+-  There were significant limitations to reproducibility of results in the original paper, such as ambiguous application of V.I., limited views of 3D plots and lack of methodology for quoted winning percentages.
+
+- We believe we have adhered to the 5Rs in our work, providing a .pkl file of our optimal policy for external verification and open source repository for further work. 
