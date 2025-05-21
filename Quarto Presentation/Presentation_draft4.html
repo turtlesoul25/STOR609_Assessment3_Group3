@@ -476,6 +476,7 @@ Niharika Peddinenikalva
 <ul>
 <li class="fragment"><p>V.I. algorithm in terms of tolerance <span class="math inline">\(\Delta\)</span>, though tolerance not specified in paper. We had to use maximum number of iterations instead.</p></li>
 <li class="fragment"><p>Though we reproduced the figures the 3D views not easily comparable. And there were no specific values to verify except <span class="math inline">\(P_{(0,0,0)}\)</span>.</p></li>
+<li class="fragment"><p>The authors claimed that staged V.I. is more efficient but we found the opposite.</p></li>
 </ul>
 </section>
 <section id="our-work-and-the-5rs-i" class="slide level2">
@@ -905,7 +906,7 @@ Niharika Peddinenikalva
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

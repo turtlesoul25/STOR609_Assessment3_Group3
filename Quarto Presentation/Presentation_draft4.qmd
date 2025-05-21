@@ -178,6 +178,8 @@ Replicability refers to when algorithm or solution can be recoded by someone els
 
 - Though we reproduced the figures the 3D views not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
 
+- The authors claimed that staged V.I. is more efficient but we found the opposite.
+
 
 
 
