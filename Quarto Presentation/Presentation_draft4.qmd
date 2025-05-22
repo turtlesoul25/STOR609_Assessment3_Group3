@@ -111,7 +111,7 @@ format:
 ::::
 
 
-## Comparing figures 5 and 6 {.smaller}
+## Comparing Figures 5 and 6 {.smaller}
 
 :::: {.columns} 
 ::: {.column width="49%"} 
@@ -188,7 +188,7 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 
 ## Our work and the 5Rs (I)
 
--   Our code is re-runnable by a third party, and we provide a Github package. 
+-   Our code is re-runnable by a third party, and we provide a GitHub package. 
 -   Our results are repeatable, as we obtain the same optimal policy after convergence, and we specify iterations.
 -   Our solution is reproducible, robust to future versions of Python utilising sets, dictionaries and other basic data structures.
 -   Our results are replicable, we explain methodology in detail, and provide pseudocode.
@@ -217,3 +217,5 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 ## Thank you!
 
 Questions welcome. 🐷
+
+How many pigs did you spot?
