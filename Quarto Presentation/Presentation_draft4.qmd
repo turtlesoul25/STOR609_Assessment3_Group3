@@ -164,7 +164,7 @@ format:
 
 
 
-## 5 Rs of Neller and Cresser (I)
+## 5 Rs of Neller and Presser (I)
 Replicability refers to when an algorithm or solution can be recoded by someone else. 
 
 -  The methodology as described in the paper is not replicable, in particular the description of the Value Iteration (V.I.) algorithm. 
@@ -175,9 +175,9 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 
 - No code means not all Rs applicable.
 
-## 5 Rs of Neller and Cresser (II)
+## 5 Rs of Neller and Presser (II)
 
-- V.I. algorithm in terms of tolerance $\Delta$, though tolerance not specified in paper. We had to use maximum number of iterations instead.
+- V.I. algorithm in terms of tolerance $\Delta$, though tolerance not specified in paper. We had to use maximum number of iterations instead, as in MDP literature [2].
 
 - Though we reproduced the figures, the 3D views were not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
 
@@ -207,3 +207,13 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 -  There were significant limitations to reproducibility of results in the original paper, such as ambiguous application of V.I., limited views of 3D plots and lack of methodology for quoted winning percentages.
 
 - We believe we have adhered to the 5Rs in our work, providing a .pkl file of our optimal policy for external verification and open source repository for further work. 
+
+## References
+
+[1] Neller, Todd W. and Clifton G.M. Presser. (2004) "Optimal Play of the Dice Game Pig," The UMAP Journal 25.1 , 25-47.
+
+[2] Poole, D. L., & Mackworth, A. K. (2017). Artificial Intelligence: Foundations of Computational Agents (Second edition.). Cambridge University Press. https://doi.org/10.1017/9781108164085
+
+## Thank you
+
+Questions welcome. 
