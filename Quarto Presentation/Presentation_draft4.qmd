@@ -133,7 +133,7 @@ format:
 
 :::: {.columns} 
 ::: {.column width="40%"} 
-- Figure 7 shows contours of different winning probabilities computed from the optimal policy.
+- Figure 7 shows contours of different winning probabilities computed from the optimal 🐖 policy.
 - We draw a contour wherein the states have a win probability that is within a threshold $t$ from the desired probability, e.g. in the interval $x\% \pm t$.
 - The thresholds were manually selected for each of the $4$ probabilities in order to yield smooth surfaces.
 :::
