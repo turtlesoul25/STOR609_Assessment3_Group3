@@ -19,7 +19,7 @@ format:
 ---
 
 
-## Summary of our findings
+## Summary of our findings 🐷
 
 -   We believe we have managed to reproduce all figures from the original paper.
 -   We found that the figures of winning percentages were different from those in the paper.
@@ -29,7 +29,7 @@ format:
 :::: {.columns} 
 ::: {.column width="40%"} 
 - Each of the lines represents how the estimates for each of the win probabilities change as iterations of the algorithm are performed.
-- The win probability converges within the first $25$ iterations.
+- The win probability converges within the first $25$ iterations.🐷
 - Our figure differs in the first $5$ iterations.
 :::
 
@@ -64,7 +64,7 @@ format:
 :::: {.columns} 
 ::: {.column width="40%"} 
 - Figure 4 is a cross-section of Figure 3, as well as Figure 5 (see next slide).
-- Figure 4 is easier to compare to the graph created with our results, as it is only in two dimensions.
+- Figure 4 is easier to compare to the graph created with our results, as it is only in two dimensions.🐷
 - For lower values of player 1's score they want to roll while they have a turn total of up to 23. This value decreases until a player score of around 72, at which point they wish to roll until they have won.
 :::
 
@@ -165,7 +165,7 @@ format:
 
 
 ## 5 Rs of Neller and Presser (I)
-Replicability refers to when an algorithm or solution can be recoded by someone else. 
+Replicability refers to when an algorithm or solution can be recoded by someone else. 🐷
 
 -  The methodology as described in the paper is not replicable, in particular the description of the Value Iteration (V.I.) algorithm. 
 
@@ -181,7 +181,7 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 
 - Though we reproduced the figures, the 3D views were not easily comparable. And there were no specific values to verify except $P_{(0,0,0)}$.
 
-- The authors claimed that staged V.I. is more efficient but we found the opposite.
+- The authors claimed that staged V.I. is more efficient but we found the opposite.🐷
 
 
 
@@ -197,7 +197,7 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 ## Our work and the 5Rs (II)
 
 -   Our code is reusable for simple extensions of Pig such as goal-n-Pig, and routinely adaptable to different versions of Pig with equations (e.g. two 6-sided dice losing with snake eyes, changes in input equation).
--   Further Piglet could be extended to have different goal numbers (twiglet, triglet, quiglet?).
+-   Further Piglet could be extended to have different goal numbers (twiglet, triglet, quiglet?). 🐷
 -   Did not explore other extensions mentioned in paper such as jeopardy approach games.
 
 ## Conclusion
