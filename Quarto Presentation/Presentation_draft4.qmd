@@ -214,6 +214,6 @@ Replicability refers to when an algorithm or solution can be recoded by someone 
 
 [2] Poole, D. L., & Mackworth, A. K. (2017). Artificial Intelligence: Foundations of Computational Agents (Second edition.). Cambridge University Press. https://doi.org/10.1017/9781108164085
 
-## Thank you
+## Thank you!
 
-Questions welcome. 
+Questions welcome. 🐷
